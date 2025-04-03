@@ -1,0 +1,63 @@
+import mampy as np
+from data _loader import read_data
+class Node:
+S e l a n s v e r =
+def_str_(selt):
+return self.attribute
+def subtables(data, col, delete):
+diems hp. unique(datal:, coll), count = np.zeros((items.shape[0], 1), dtype=np.int32)
+for x in r a n g e ( i t e m s . s h a p e l :
+c o l | = = 1 t e m s X]:
+for x in range(items.shape[0]):
+dict [items[x]] = np.empty((int(count[x]), data.shape[1]), dtype="|S32")
+dict[items[x]I|pos]= dataly]
+dict [items[x]] = np.delete(dict[items[x]], col, 1)
+return items, dict
+def entropy(S): items = np.unique(S)
+if items.size == 1:
+r e t u r n 0
+counts = np.zeros((items.shape[0], 1))
+s u m s = 0
+for x in range(items.shape[0]): counts [x] = sum(S = items[x]) / (S.size * 1.0)
+for count in counts:
+sums += -1 * count * math.log(count, 2)
+r e t u r n s u m s
+def gain_ ratio(data, col):
+items, dict = subtables(data, col, delete=False)
+total_size = data.shape[0]
+for x in range(items.shape|Ol):
+entropies [x] = ratio
+e a t r o p i e s t e - m a t o s n t o p y d o c i t e m s ) ; ? )
+intrinsic[x] = ratio * math.log(ratio, 2)
+total_entropy = entropy(datal:, -I))
+iv = - ] * s u m ( i n t r i n s i c )
+for x in range(entropies.shape|): total_entropy -= entropies[x]
+return total _entropy / IV
+def create_node(data, metadata):
+#TODO: Co jesli information gain jest zerowe?
+node.answer = np.unique(data[:, - 11)[0]
+return node
+gains = np.zeros((data.shape[l] - 1, 1))
+for col in rangedata.shape 1) - 1):
+gains[col] = gain_ratio(data, col)
+split = np.argma(gains)
+node = Node(metadata[split))
+metadata = np.delete(metadata, split, 0)
+items, dict = subtables(data, split, delete=True)
+for x in range(items.Shape u :
+child = create_ node(dict[items x]., metadata)
+node.children.append((items|x], child))
+return node
+def empty(size):
+for x in range(size):
+s +=
+r e t u r n s
+def pride answer e level): print(empty(level), node.answer)
+r e t u r n
+print(empty(level), node.attribute)
+foryalue, ny lede childreniue)
+print_tree(n, level + 2)
+metadata, traindata = read _data("tennis.data")
+data = np.array(traindata)
+node = create _node(data, metadata)
+print_tree(node, 0)
