@@ -1,0 +1,17 @@
+import csv
+def loadCsv(filename):
+lines =
+cs.readeropen(filena
+me, "r")) dataset =
+list(lines) for i in
+range(le
+n(datase
+t)):
+dataset[i
+]=
+dataset[i
+return dataset
+a t t r i b u t e s =
+['Sky', Temp', 'Humidity', Wind', Water', Forecas
+t'] print('Attributes =',attributes)
+num _attributes = len(attributes)
