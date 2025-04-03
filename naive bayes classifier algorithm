@@ -1,0 +1,51 @@
+import math
+import random
+import csv
+def encode_class(mydata):
+classes = |J
+for i in range(len(mydata)):
+if mydata[i][-1] not in classes:
+classes.append(mydata[Ul-1))
+for i in range(len(classes)):
+for j in range(len(mydata)):
+if mydata(f][-1] == classes 0:
+mydata (N[-1] = i
+return mydata
+def splitting(mydata, ratio):
+train _num = int(len(mydata) * ratio)
+train = []
+test = list(mydata)
+while len(train) < train _num:
+index = random.randrange(len(test))
+train.append(test.pop(index))
+return train, test
+def groupUnderClass(mydata):
+dict = 1}
+for i in range(len(mydata)):
+if (mydata[i][-1] not in dict):
+dict[mydata[][-1]] = |]
+dict[mydata[i][-1]].append(mydatali)
+return dic
+return sum(numbers) / float(len(numbers))
+def std_dev(numbers): avg = mean(numbers)
+variance = sum([pow(x - avg, 2) for x in numbers]) / float(len(numbers) - 1 )return
+math.sqrt(variance)
+def MeanAndStdDev(mydata):
+info = [(mean(attribute), std_dev(attribute)) for attribute in zip(*mydata)]
+del infol-1] return info
+def MeanAndStdDevForClass(mydata):
+into = 1}
+dict = groupUnderClass(mydata)
+for class Value, instances in dict.items:
+info[class Value] = MeanAndStdDev(instances)
+return info
+def calculateGaussianProbabilityx, mean, stdev):
+expo = math.exp(-(math.pow(x - mean, 2) / (2 * math.pow(stdev, 2))))
+return (1 / (math.sqrt(2 * math.pi) * stdev)) * expo
+def calculateClassProbabilities(info, test):
+probabilities = {}
+for class Value, classSummaries in info.items):
+probabilities[class Value] = 1
+for i in range(len(classSummaries)):
+mean, std _dev = classSummaries [1]x = test[1]
+probabilities[class Value] *= calculateGaussianProbabilityx, mean, std_de
