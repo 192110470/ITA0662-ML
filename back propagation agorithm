@@ -1,0 +1,45 @@
+import numpy as np
+X = np. array(([2, 9], [1, 5], [3, 61), dtype=float)
+y = np.array([92), [86], [89]), dtype=float)
+X = X/np.amaxX,axis=0) # maximum of X array longitudinally y = y/100
+#Sigmoid Function
+Dept. of CSE, BIET Paae
+ML Lab Manual
+6 C S 4 - 2 2
+#Derivative of Sigmoid Function
+def derivatives_sigmoid(x): return x * (1 - x)
+epoch=7000
+1r=0.1
+inputlayer_neurons = 2
+hiddenlayer_neurons = 3
+output_neurons = 1
+#Variable initialization
+#Setting training iterations
+#number of neurons at output layer
+#weight and bias initialization
+wh-np.random.uniformsize=(inputlayer_neurons,hiddenlayer_neurons))
+bh=np.random.uniform(size=(1,hiddenlayer_neurons))
+wout-np.random.uniform(size=(hiddenlayer_neurons,output_neurons))
+bout=np.random.uniform(size=(1,output_neurons))
+# draws a random range of numbers uniformly of dim x*y
+#Forward Propagation
+for i in range(epoch):
+h i p 1-np.dot(X,wh) hip=hinp1 + bh
+hlayer _act = sigmoid(hinp)
+outinp 1=np.dot(hlayer_act,wout) outinp= outinpl+ bout
+output = sigmoid(outinp)
+#Backpropagation
+EO = y-output outgrad = derivatives_sigmoid(output)
+d_output = EO* outgrad
+EH = d_output.dot(wout. 1)
+hiddengrad = derivatives_sigmoid(hlayer_act)
+#how much hidden layer wts contributed to error
+d_ hiddenlayer = EH * hiddengrad
+wout += hlayer_act.T.dot(d_output) *Ir
+# dotproduct of nextlayererror and currentlayerop
+bout += np.sum(d_output, axis=0,keepdims=True) *Ir
+wh += X.T.dotd_hiddenlayer) *Ir
+#bh += np.sum(d_hiddenlayer, axis=0,keepdims=True) *Ir
+print("Input: In" + str(X))
+print("Actual Output: In" + str(y))
+print("Predicted Output: In"
